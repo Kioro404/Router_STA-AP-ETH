@@ -26,9 +26,3 @@ Todo gestionado desde una interfaz web desde la que se puede interactuar muy fá
 	- Subir el sketch:
 		- **Automáticamente:** Tener conectado el **ESP32** al computador y especificar el puerto **USB** en el que está conectado y el tipo de **placa** para una instalación más rápida.
 		- **Manualmente:** Subir el sketch con **Arduino IDE**
-
-<div style="display: flexbox;">
-	<a href="https://www.paypal.com/ncp/payment/VACJKWHB3F4YS" target="_blank" >
-		<img src="https://raw.githubusercontent.com/stefan-niedermann/paypal-donate-button/master/paypal-donate-button.png" alt="Donate with PayPal" style="width: 250px;"/>
-	</a>
-</div>
