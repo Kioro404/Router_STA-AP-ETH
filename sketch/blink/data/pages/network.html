@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="../assets/icons/log-off.svg" type="image/svg+xml">
+		<link rel="stylesheet" href="../css/root.css" Content-Type="text/css"/>
+		<style>
+			.network-container {
+				/* position: fixed; */
+				max-width: 30em;
+				margin: auto;
+				background: var(--color-primary);
+				padding: 1.5em;
+				margin-bottom: 1em;
+				border-radius: 0.5em;
+			}
+
+			.network-container h1 {
+				text-align: center;
+				color: var(--color-foreground);
+			}
+
+			.network-container .form-group {
+				margin-bottom: 1em;
+			}
+
+			.network-container label {
+				display: block;
+				margin-bottom: 0.5em;
+				color: var(--color-foreground);
+			}
+
+			.network-container input {
+				width: 100%;
+				padding: 0.5em;
+				border: 0.5em solid var(--color-foreground);
+				border-radius: 4px;
+				box-sizing: border-box;
+			}
+
+			.network-container button {
+				width: 100%;
+				padding: 0.5em;
+				background-color: var(--color-secundary);
+				color: white;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+				font-size: 16px;
+				margin: 0em 1em;
+			}
+
+			.network-container button:hover {
+				background-color: var(--color-hover);
+			}
+			
+			.checkbox-container {
+				align-items: center;
+				display: inline-flex;
+			}
+			
+			.checkbox-container label {
+				margin: 0px 10px 0px 0px; /* Eliminar márgenes del label */
+				padding: 0px;
+			}
+
+			.checkbox-container input {
+				display: none;
+			}
+
+			.custom-checkbox {
+				width: 1.3em; /* Ancho del checkbox personalizado */
+				height: 1.3em; /* Alto del checkbox personalizado */
+				border: 2px solid var(--color-secundary); /* Color del borde */
+				border-radius: 4px; /* Bordes redondeados */
+				display: inline-flex;
+				position: relative;
+				cursor: pointer; /* Cambiar el cursor al pasar sobre el checkbox */
+			}
+			
+			/* Estilo para el checkbox cuando está seleccionado */
+			.checkbox:checked + .custom-checkbox {
+				border: 2px solid var(--color-foreground); /* Color del borde */
+				background-color: var(--color-secundary); /* Color de fondo cuando está seleccionado */
+			}
+			
+			.checkbox:checked + .custom-checkbox::after {
+				content: '';
+				position: absolute;
+				left: 29%;
+				top: 9%;
+				width: 30%;
+				height: 60%;
+				border: solid var(--color-foreground); /* Color de la marca de verificación */
+				border-width: 0 2px 2px 0; /* Estilo de la marca de verificación */
+				transform: rotate(45deg); /* Rotar para formar una marca de verificación */
+			}
+			
+			.actions {
+				display: flex;
+			}
+			
+			.field_error {
+				/* border: solid 1px red; */
+				color: var(--color-red);
+			}
+			
+			.error {
+				color: var(--color-red);
+				display: block;
+				padding-top: 0.5em;
+			}
+		</style>
+		<title>Redes</title>
+	</head>
+	<body>
+		
+		<div id="sidebarjs"></div>
+		<div id="progressbarjs"></div>
+		
+		<div id="network">
+			<div class="network-container">
+				<h1>Configuración del Wi-Fi</h1>
+				<form id="wifi-form">
+					<div class="form-group">
+						<div class="checkbox-container">
+							<label for="dhcp">Habilitar Wi-Fi</label>
+							<label>
+								<input type="checkbox" id="wifi-enable" name="Habilitado" class="checkbox">
+								<span class="custom-checkbox"></span>
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+							<label for="ssid">Nombre de la Red (SSID):</label>
+							<input type="text" id="wifi-ssid" name="SSID" placeholder="Nombre">
+							<span></span>
+					</div>
+					<div class="form-group">
+							<label for="password">Contraseña:</label>
+							<input type="password" id="wifi-pass" name="Contraseña" placeholder="********">
+							<span></span>
+					</div>
+					<div class="form-group" id="wifi-dhcp-group">
+						<div class="checkbox-container">
+							<label for="dhcp">Habilitar DHCP</label>
+							<label>
+								<input type="checkbox" id="wifi-dhcp" name="DHCP" class="checkbox">
+								<span class="custom-checkbox"></span>
+							</label>
+						</div>
+					</div>
+					<div class="form-group" id="wifi-address-group">
+							<label for="address">Dirección IP:</label>
+							<input type="text" id="wifi-address" name="Dirección IP" placeholder="192.168.1.2">
+							<span></span>
+					</div>
+					<div class="form-group" id="wifi-gateway-group">
+							<label for="gateway">Puerta de Enlace:</label>
+							<input type="text" id="wifi-gateway" name="Puerta de enlace" placeholder="192.168.1.1">
+							<span></span>
+					</div>
+					<div class="form-group" id="wifi-subnet-group">
+							<label for="subnet">Mascara de red:</label>
+							<input type="text" id="wifi-subnet" name="Mascara de red" placeholder="255.255.255.0">
+							<span></span>
+					</div>
+					<div class="form-group" id="wifi-dns1-group">
+							<label for="dns1">Servidor DNS:</label>
+							<input type="text" id="wifi-dns1" name="DNS" placeholder="4.4.4.4">
+							<span></span>
+					</div>
+					<div class="form-group" id="wifi-dns2-group">
+							<label for="dns2">Servidor DNS:</label>
+							<input type="text" id="wifi-dns2" name="DNS" placeholder="8.8.4.4">
+							<span></span>
+					</div>
+					<div class="actions">
+						<button type="reset" class="reset" id="wifi-reset">Limpiar</button>
+						<button type="button" class="submit" id="wifi-submit">Guardar</button>
+					</div>
+				</form>
+			</div>
+			
+			<div class="network-container">
+				<h1>Configuración del punto de acceso</h1>
+				<form id="ap-form">
+					<div class="form-group">
+						<div class="checkbox-container">
+							<label for="dhcp">Habilitar AP</label>
+							<label>
+								<input type="checkbox" id="ap-enable" name="Habilitado" class="checkbox">
+								<span class="custom-checkbox"></span>
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+							<label for="ssid">Nombre de la Red (SSID):</label>
+							<input type="text" id="ap-ssid" name="SSID" placeholder="Nombre">
+							<span></span>
+					</div>
+					<div class="form-group">
+							<label for="password">Contraseña:</label>
+							<input type="password" id="ap-pass" name="Contraseña" placeholder="********">
+							<span></span>
+					</div>
+					<div class="form-group" id="ap-dhcp-group">
+						<div class="checkbox-container">
+							<label for="dhcp">Habilitar DHCP</label>
+							<label>
+								<input type="checkbox" id="ap-dhcp" name="DHCP" class="checkbox">
+								<span class="custom-checkbox"></span>
+							</label>
+						</div>
+					</div>
+					<div class="form-group" id="ap-address-group">
+							<label for="address">Dirección IP:</label>
+							<input type="text" id="ap-address" name="Dirección IP" placeholder="192.168.1.1">
+							<span></span>
+					</div>
+					<div class="form-group" id="ap-gateway-group">
+							<label for="gateway">Puerta de Enlace:</label>
+							<input type="text" id="ap-gateway" name="Puerta de enlace" placeholder="192.168.1.1">
+							<span></span>
+					</div>
+					<div class="form-group" id="ap-subnet-group">
+							<label for="subnet">Mascara de red:</label>
+							<input type="text" id="ap-subnet" name="Mascara de red" placeholder="255.255.255.0">
+							<span></span>
+					</div>
+					<div class="form-group" id="ap-dns-group">
+							<label for="dns">Servidor DNS:</label>
+							<input type="text" id="ap-dns" name="DNS" placeholder="8.8.4.4">
+							<span></span>
+					</div>
+					<div class="actions">
+						<button type="reset" class="reset" id="ap-reset">Limpiar</button>
+						<button type="button" class="submit" id="ap-submit">Guardar</button>
+					</div>
+				</form>
+			</div>
+			
+			<div class="network-container">
+				<h1>Configuración del Ethernet</h1>
+				<form id="ethernet-form">
+					<div class="form-group">
+						<div class="checkbox-container">
+							<label for="dhcp">Habilitar Ethernet</label>
+							<label>
+								<input type="checkbox" id="ethernet-enable" name="Habilitado" class="checkbox">
+								<span class="custom-checkbox"></span>
+							</label>
+						</div>
+					</div>
+					<div class="form-group" id="ethernet-dhcp-group">
+						<div class="checkbox-container">
+							<label for="dhcp">Habilitar DHCP</label>
+							<label>
+								<input type="checkbox" id="ethernet-dhcp" name="DHCP" class="checkbox">
+								<span class="custom-checkbox"></span>
+							</label>
+						</div>
+					</div>
+					<div class="form-group" id="ethernet-address-group">
+							<label for="address">Dirección IP:</label>
+							<input type="text" id="ethernet-address" name="Dirección IP" placeholder="192.168.1.1">
+							<span></span>
+					</div>
+					<div class="form-group" id="ethernet-gateway-group">
+							<label for="gateway">Puerta de Enlace:</label>
+							<input type="text" id="ethernet-gateway" name="Puerta de enlace" placeholder="192.168.1.1">
+							<span></span>
+					</div>
+					<div class="form-group" id="ethernet-subnet-group">
+							<label for="subnet">Mascara de red:</label>
+							<input type="text" id="ethernet-subnet" name="Mascara de red" placeholder="255.255.255.0">
+							<span></span>
+					</div>
+					<div class="form-group" id="ethernet-dns-group">
+							<label for="dns">Servidor DNS:</label>
+							<input type="text" id="ethernet-dns" name="DNS" placeholder="8.8.4.4">
+							<span></span>
+					</div>
+					<div class="actions">
+						<button type="reset" class="reset" id="ethernet-reset">Limpiar</button>
+						<button type="button" class="submit" id="ethernet-submit">Guardar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<script src="../js/sidebar.js"></script>
+		<script src="../js/progressbar.js"></script>
+		<script src="../js/network.js"></script>
+	</body>
+</html>

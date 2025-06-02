@@ -1,0 +1,17 @@
+:root {
+	--color-primary: rgb(34, 34, 34); /* Otra variable */
+	--color-secundary: rgb(169, 7, 184); /* Define la variable */
+	--color-red: rgb(255, 0, 0); /* Otra variable */
+	--color-green: rgb(0, 255, 0); /* Otra variable */
+	--color-hover: rgb(54, 54, 54); /* Otra variable */
+	--color-background: rgb(0, 0, 0); /* Otra variable */
+	--color-foreground: rgb(255, 255, 255);
+	--font-principal: Arial, sans-serif; /* Variable para la fuente */
+}
+
+body {
+	padding: 1em;
+	background-color: var(--color-background);
+	color: var(--color-background-font);
+	font-family: var(--font-principal);
+}

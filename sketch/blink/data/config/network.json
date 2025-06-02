@@ -1,0 +1,42 @@
+{
+	"Hostname": "router-wifi_ap_sta",
+	"Ethernet": {
+		"enable": true,
+		"dhcp": false,
+		"addresses": {
+			"address": "192.168.100.202",
+			"gateway": "192.168.100.1",
+			"subnet": "255.255.255.0",
+			"dns": "192.168.100.1"
+		}
+	},
+	"AP": {
+		"enable": true,
+		"credentials": {
+			"ssid": "Router-WIFI_AP_STA",
+			"pass": "12345678"
+		},
+		"dhcp": false,
+		"addresses": {
+			"address": "192.168.32.2",
+			"gateway": "192.168.32.1",
+			"subnet": "255.255.255.0",
+			"dns": "4.4.4.4"
+		}
+	},
+	"WiFi": {
+		"enable": true,
+		"credentials": {
+			"ssid": "BORGES_EXT",
+			"pass": "Reno.90."
+		},
+		"dhcp": false,
+		"addresses": {
+			"address": "192.168.100.201",
+			"gateway": "192.168.100.1",
+			"subnet": "255.255.255.0",
+			"dns1": "4.4.4.4",
+			"dns2": "8.8.4.4"
+		}
+	}
+}
